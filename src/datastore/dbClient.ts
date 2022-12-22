@@ -1,7 +1,8 @@
 import { dbClient1 } from './dbClient1';
 import { dbClient2 } from './dbClient2';
 import { fromDb1, fromDb2 } from './transformers';
-import { DBRecord } from './types';
+import type { DBRecord } from './types';
+import type { Task } from '../types';
 
 export const dbClient = {
   getRecordById: (id: string): DBRecord | undefined => {
@@ -21,4 +22,9 @@ export const dbClient = {
 
     return undefined;
   },
+
+  getTaskById: (id: string): Task | null => dbClient2.getTaskById(id),
+
+  updateTask: (id: string, taskUpdate: Partial<Task>) =>
+    dbClient2.updateTask(id, taskUpdate),
 };

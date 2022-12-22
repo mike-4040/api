@@ -1,3 +1,5 @@
+import { Task } from '../types';
+
 export const data = {
   '2': {
     id: '2',
@@ -23,5 +25,18 @@ export const data = {
       city: 'San Francisco',
       state: 'CA',
     },
+  },
+};
+
+export const tasks: Record<string, Task> = {
+  '1': {
+    id: '1',
+    name: 'Task 1',
+    status: 'new',
+  },
+  '2': {
+    id: '2',
+    name: 'Task 2',
+    status: 'in-progress',
   },
 };
