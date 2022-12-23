@@ -2,6 +2,7 @@ import { data, tasks, users } from './dataDB2';
 import type { DB2Record } from './types';
 import type { SomeRequired, Task, User } from '../types';
 import { UserError } from '../utilMiddleware/errorHandler';
+import { ROLES } from '../constants';
 
 export const dbClient2 = {
   getRecord: (id: string): DB2Record | null => {
@@ -29,7 +30,7 @@ export const dbClient2 = {
       throw new UserError(`dbClient2: user already exists: ${user.id}`);
     }
     const id = Object.keys(users).length + 1;
-    const newUser = { ...user, id };
+    const newUser = { ...user, role: ROLES.user, id };
     users[id.toString()] = newUser;
     return newUser;
   },

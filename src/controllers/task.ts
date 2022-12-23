@@ -4,17 +4,17 @@ import { dbClient } from '../datastore/dbClient';
 import type { Task } from '../types';
 import { taskEvents } from '../tasks/events';
 import { TASK_EVENTS } from '../constants';
+import { UserError } from '../utilMiddleware/errorHandler';
 
 export function getTask(req: Request, res: Response) {
   const { id } = req.params;
 
   const task = dbClient.getTaskById(id);
   if (!task) {
-    res.status(404).send({ success: false, message: 'Record not found' });
-    return;
+    throw new UserError('Task not found', 404);
   }
 
-  res.json(task);
+  res.json({ task });
 }
 
 export function updateTask(req: Request, res: Response) {

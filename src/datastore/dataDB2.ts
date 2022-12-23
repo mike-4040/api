@@ -45,9 +45,16 @@ export const users: Record<string, User> = {
   '1': {
     id: 1,
     name: 'Tim Green',
+    role: 'admin',
   },
   '2': {
     id: 2,
     name: 'John Doe',
+    role: 'user',
+  },
+  '3': {
+    id: 3,
+    name: 'Nobody Know',
+    role: 'guest',
   },
 };

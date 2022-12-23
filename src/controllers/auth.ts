@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { dbClient } from '../datastore/dbClient';
 import type { SomeRequired, User } from '../types';

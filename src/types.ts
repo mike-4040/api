@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { VALID_TASK_STATUSES } from './constants';
+import { VALID_TASK_STATUSES, VALID_ROLES } from './constants';
 
 export interface Task {
   id: string;
@@ -11,9 +11,10 @@ export interface Task {
 export interface User {
   id: number; // likely something like a UUID
   name: string;
+  role: typeof VALID_ROLES[number];
 }
 
-export type AuthUser = Pick<User, 'id'>;
+export type AuthUser = Pick<User, 'id' | 'role'>;
 
 export type SomeRequired<T, K extends keyof T> = Partial<T> &
   Required<Pick<T, K>>;
