@@ -22,6 +22,16 @@ export const dbClient2 = {
     tasks[id as keyof typeof tasks] = updatedTask;
     return true;
   },
+  deleteTask: (id: string): boolean => {
+    console.log(`dbClient2: deleteTask: ${id}`);
+    const task = dbClient2.getTaskById(id);
+    if (!task) {
+      throw new UserError(`Task: ${id} not found`);
+    }
+
+    delete tasks[id as keyof typeof tasks];
+    return true;
+  },
   getUserById: (id: string): User | null => {
     return users[id as keyof typeof users] || null;
   },

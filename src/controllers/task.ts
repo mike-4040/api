@@ -31,3 +31,11 @@ export function updateTask(req: Request, res: Response) {
 
   res.json({ success: true, message: 'Queued' });
 }
+
+export function deleteTask(req: Request, res: Response) {
+  const { id } = req.params;
+
+  dbClient.deleteTask(id);
+
+  res.json({ success: true });
+}
