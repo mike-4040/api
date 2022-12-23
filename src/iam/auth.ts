@@ -15,12 +15,12 @@ export const authMiddleware = (
 
   const [_, userId] = authorization.split(' ');
   if (!userId) {
-    throw new UserError('Unauthorized', 401);
+    throw new UserError('Malformed token', 401);
   }
 
   const user = dbClient.getUserById(userId);
   if (!user) {
-    throw new UserError('Unauthorized', 401);
+    throw new UserError('User not found, please try to login', 401);
   }
 
   Object.assign(req, { user });
