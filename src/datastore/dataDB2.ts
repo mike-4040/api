@@ -1,4 +1,4 @@
-import { Task } from '../types';
+import { Task, User } from '../types';
 
 export const data = {
   '2': {
@@ -38,5 +38,16 @@ export const tasks: Record<string, Task> = {
     id: '2',
     name: 'Task 2',
     status: 'in-progress',
+  },
+};
+
+export const users: Record<string, User> = {
+  '1': {
+    id: 1,
+    name: 'Tim Green',
+  },
+  '2': {
+    id: 2,
+    name: 'John Doe',
   },
 };

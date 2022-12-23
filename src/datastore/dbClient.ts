@@ -4,6 +4,8 @@ import { fromDb1, fromDb2 } from './transformers';
 import type { DBRecord } from './types';
 import type { Task } from '../types';
 
+type UserCreate = Parameters<typeof dbClient2.creteUser>[0];
+
 export const dbClient = {
   getRecordById: (id: string): DBRecord | undefined => {
     // !Assumption: database 2 is preferred ( migrating from db1 to db2)
@@ -27,4 +29,7 @@ export const dbClient = {
 
   updateTask: (id: string, taskUpdate: Partial<Task>) =>
     dbClient2.updateTask(id, taskUpdate),
+
+  getUserById: (id: string) => dbClient2.getUserById(id),
+  creteUser: (user: UserCreate) => dbClient2.creteUser(user),
 };
