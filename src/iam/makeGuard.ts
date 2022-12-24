@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
+
+import { abacPolicies } from './abacPolicies';
 import { ROLES, VALID_PERMISSIONS, PERMISSIONS_BY_ROLE } from '../constants';
 import { dbClient } from '../datastore/dbClient';
 import { AuthedRequest } from '../types';
@@ -25,6 +27,14 @@ export const makeGuard = (requiredPermissions: typeof VALID_PERMISSIONS) => {
     ) {
       throw new UserError('Forbidden', 403);
     }
+
+    // run the policy for each required permission
+    requiredPermissions.forEach(permission => {
+      const policy = abacPolicies.get(permission);
+      if (policy) {
+        policy(req);
+      }
+    });
 
     next();
   };
