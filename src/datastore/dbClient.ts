@@ -29,8 +29,6 @@ export const dbClient = {
 
   updateTask: (id: string, taskUpdate: Partial<Task>) =>
     dbClient2.updateTask(id, taskUpdate),
-  
-  deleteTask: (id: string) => dbClient2.deleteTask(id),
 
   getUserById: (id: string) => dbClient2.getUserById(id),
   creteUser: (user: UserCreate) => dbClient2.creteUser(user),

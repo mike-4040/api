@@ -4,7 +4,7 @@ import { appListening } from './helpers/appListening';
 import { CONFIG } from './constants';
 import { catchAll } from './utilMiddleware/catchAll';
 import { getRecord } from './controllers/getRecord';
-import { deleteTask, getTask, updateTask } from './controllers/task';
+import { getTask, updateTask } from './controllers/task';
 import { helloController } from './controllers/helloController';
 import { logger } from './utilMiddleware/logger';
 import { signUp, login } from './controllers/auth';
@@ -24,7 +24,6 @@ express()
   .get('/record/:id', getRecord)
   .get('/task/:id', getTask)
   .patch('/task/:id', makeGuard([PERMISSIONS.taskUpdate]), updateTask)
-  .delete('/task/:id', makeGuard([PERMISSIONS.taskDelete]), deleteTask)
   .use('*', catchAll)
   .use(errorHandler)
   .listen(CONFIG.port, appListening);
